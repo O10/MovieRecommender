@@ -4,7 +4,6 @@ from scipy.spatial.distance import cosine
 ratingTable=pd.read_csv('data/rating_table.csv')
 
 print("Calculating simillarities")
-print(ratingTable.columns)
 simillarityMatrix = pd.DataFrame(index=ratingTable.columns,columns=ratingTable.columns)
 
 for i in range(0,len(simillarityMatrix.columns)) :
