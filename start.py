@@ -1,6 +1,7 @@
 import pandas as pd
 from scipy.spatial.distance import cosine
 
+
 data = pd.read_csv('data/test.csv')
 print("Loading data")
 #data=pd.read_csv('data/recsysrules-train.csv') #actual data
