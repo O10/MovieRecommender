@@ -12,7 +12,7 @@ featureMatrix = pd.DataFrame(0, index=ratingTable.index, columns=movieTable.colu
 
 for i in range(0, len(featureMatrix.index)):
     s = ratingTable.loc[featureMatrix.index[i], :]
-    userHighRankedMovies = s[s >= 4]
+    userHighRankedMovies = s[s >= goodMovieTreshold]
 
     for j in userHighRankedMovies.index:
         featureMatrix.iloc[i, :] += movieTable.loc[j, :]
