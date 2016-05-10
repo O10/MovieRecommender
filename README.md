@@ -24,3 +24,5 @@ wtedy
 python start.py recrules-train.csv 
 ```
 i można iść spać i sprawdzić rano :P
+
+Po zakończeniu rekomendacje dostępne w pliku data/user_recommendations.csv
