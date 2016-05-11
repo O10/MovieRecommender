@@ -27,5 +27,4 @@ for i in range(0, len(ratingTable.index)):
 
 ratingTable.fillna(0, inplace=True)
 ratingTable.to_csv('data/rating_table.csv')
-
 print("Done")

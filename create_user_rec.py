@@ -1,6 +1,6 @@
 import pandas as pd
 
-print("Loading data")
+print("Loading data for recommendations")
 
 ratingTable = pd.read_csv('data/rating_table.csv', index_col=0)
 simillarityMatrixRating = pd.read_csv('data/sim_matrix_rating.csv', index_col=0)
