@@ -12,6 +12,8 @@ movieTable.drop(movieTable.columns[0:19], axis=1, inplace=True)
 rec_number = 5
 topFeaturePar = 0.2
 topFeatureNum = 5
+simRatPar = 1
+simConPar = 1
 
 print("Done")
 
@@ -51,13 +53,15 @@ for i in range(0, len(userSimillarities.index)):
             # feature
             movieFeaturesScore = sum(movieTable.loc[product][userTopFeatures]) * topFeaturePar
 
-            userSimillarities.iloc[i][j] = getScore(ratingUserRateHistory, ratingProductTopSims) + getScore(
-                contentUserRateHistory, contentProductTopSims) + movieFeaturesScore
+            userSimillarities.iloc[i][j] = simRatPar * getScore(ratingUserRateHistory,
+                                                                ratingProductTopSims) + simConPar * getScore(
+                contentUserRateHistory, contentProductTopSims)
 
 dataRecommend = pd.DataFrame(index=userSimillarities.index, columns=range(1, rec_number + 1))
 
 for i in range(0, len(userSimillarities.index)):
-    dataRecommend.ix[i, 0:] = userSimillarities.iloc[i, :].order(ascending=False).iloc[0:rec_number, ].index.transpose()
+    dataRecommend.iloc[i, 0:] = userSimillarities.iloc[i, :].order(ascending=False).iloc[
+                                0:rec_number, ].index.transpose()
 
 dataRecommend.to_csv('data/user_recomendations.csv')
 print("Done")
