@@ -1,4 +1,5 @@
 import pandas as pd
+import math
 
 print("Loading data for recommendations")
 
@@ -44,18 +45,22 @@ for i in range(0, len(userSimillarities.index)):
             ratingProductTopNames = getTopSimillarities(simillarityMatrixRating, product, 1, rec_number + 1)
             ratingProductTopSims = simillarityMatrixRating.ix[product].order(ascending=False)[1:rec_number + 1]
             ratingUserRateHistory = ratingTable.ix[user, ratingProductTopNames]
+            scoreRating = getScore(ratingUserRateHistory, ratingProductTopSims)
+            if (math.isnan(scoreRating)):
+                scoreRating = 0
 
             # content
             contentProductTopNames = getTopSimillarities(simillarityMatrixContent, product, 1, rec_number + 1)
             contentProductTopSims = simillarityMatrixContent.ix[product].order(ascending=False)[1:rec_number + 1]
             contentUserRateHistory = ratingTable.ix[user, contentProductTopNames]
+            scoreContent = getScore(contentUserRateHistory, contentProductTopSims)
+            if (math.isnan(scoreContent)):
+                scoreContent = 0
 
             # feature
             movieFeaturesScore = sum(movieTable.loc[product][userTopFeatures]) * topFeaturePar
 
-            userSimillarities.iloc[i][j] = simRatPar * getScore(ratingUserRateHistory,
-                                                                ratingProductTopSims) + simConPar * getScore(
-                contentUserRateHistory, contentProductTopSims)
+            userSimillarities.iloc[i][j] = simRatPar * scoreRating + simConPar * scoreContent + movieFeaturesScore
 
 dataRecommend = pd.DataFrame(index=userSimillarities.index, columns=range(1, rec_number + 1))
 
@@ -64,4 +69,5 @@ for i in range(0, len(userSimillarities.index)):
                                 0:rec_number, ].index.transpose()
 
 dataRecommend.to_csv('data/user_recomendations.csv')
+userSimillarities.to_csv('data/user_rec_score.csv')
 print("Done")
