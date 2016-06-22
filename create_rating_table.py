@@ -1,7 +1,8 @@
 import pandas as pd
 import sys
 
-datafile = 'data/test.csv'
+datafile = 'data/recsysrules-train.csv'
+
 if len(sys.argv) > 1:
     datafile = sys.argv[1]
 

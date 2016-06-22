@@ -3,7 +3,7 @@ import math
 
 print("Loading data for recommendations")
 
-ratingTable = pd.read_csv('data/rating_table.csv', index_col=0)
+ratingTable = pd.read_csv('data/rating_table_train.csv', index_col=0)
 simillarityMatrixRating = pd.read_csv('data/sim_matrix_rating.csv', index_col=0)
 simillarityMatrixContent = pd.read_csv('data/sim_matrix_content.csv', index_col=0)
 featureMatrix = pd.read_csv('data/feature_matrix.csv', index_col=0)
@@ -11,7 +11,7 @@ movieTable = pd.read_csv('data/movie_table.csv', index_col=0)
 movieTable.drop(movieTable.columns[0:19], axis=1, inplace=True)
 
 rec_number = 5
-topFeaturePar = 0.2
+topFeaturePar = 0.1
 topFeatureNum = 5
 simRatPar = 1
 simConPar = 1
