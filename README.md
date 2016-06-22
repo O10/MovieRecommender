@@ -16,6 +16,7 @@ Dodatkowo skrypty wykorzystywane przy ewaluacji.
 9. create_eval_data.py oraz eval_data.py pierwsza ewaluacja opisana w docu
 
 Precision i Recall: 
+
 10. create_eval_data_v2.py - skrypt usuwa z ratingTable x procent najlepszych ocen i dzieli je na zbiór testowy i treningowy 
 11. eval_data_v2.py - skrypt liczy Precision i Recall dla każdego użytkownika oraz średni dla całego systemu
 
