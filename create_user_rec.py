@@ -1,9 +1,14 @@
 import pandas as pd
 import math
+import sys
+
+datafile = 'data/rating_table_train.csv'
+if len(sys.argv) > 1:
+    datafile = sys.argv[1]
 
 print("Loading data for recommendations")
 
-ratingTable = pd.read_csv('data/rating_table_train.csv', index_col=0)
+ratingTable = pd.read_csv(datafile, index_col=0)
 simillarityMatrixRating = pd.read_csv('data/sim_matrix_rating.csv', index_col=0)
 simillarityMatrixContent = pd.read_csv('data/sim_matrix_content.csv', index_col=0)
 featureMatrix = pd.read_csv('data/feature_matrix.csv', index_col=0)

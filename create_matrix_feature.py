@@ -1,8 +1,13 @@
 import pandas as pd
+import sys
 
 goodMovieTreshold = 4
 
-ratingTable = pd.read_csv('data/rating_table.csv', index_col=0)
+datafile = 'data/rating_table_train.csv'
+if len(sys.argv) > 1:
+    datafile = sys.argv[1]
+
+ratingTable = pd.read_csv(datafile, index_col=0)
 movieTable = pd.read_csv('data/movie_table.csv', index_col=0)
 movieTable.drop(movieTable.columns[0:19], axis=1, inplace=True)
 

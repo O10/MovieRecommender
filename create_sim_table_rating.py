@@ -1,7 +1,12 @@
 import pandas as pd
+import sys
 from scipy.spatial.distance import cosine
 
-ratingTable = pd.read_csv('data/rating_table_train.csv', index_col=0)
+datafile = 'data/rating_table_train.csv'
+if len(sys.argv) > 1:
+    datafile = sys.argv[1]
+
+ratingTable = pd.read_csv(datafile, index_col=0)
 
 print("Calculating rating simillarities")
 simillarityMatrix = pd.DataFrame(index=ratingTable.columns, columns=ratingTable.columns)
